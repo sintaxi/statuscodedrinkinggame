@@ -41,7 +41,7 @@ GET("/",function(){
   this.response.code = resp[0];
   this.response.body = resp[1];
 
-  return this.response;
+  // return this.response;
   // return [resp[0], [], resp[1] + "\n"];
   
 });
