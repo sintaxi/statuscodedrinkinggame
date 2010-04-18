@@ -39,8 +39,9 @@ var foo = function() {
   
 
   this.response.code = resp[0];
-  this.response.body = "\n\n {code:" + resp[0] + ", rule:'" + resp[1] + "'}\n\n";
+  this.response.body = "\n\n {code:" + resp[0] + ", rule:'" + resp[1] + "'}\n\n "+ JSON.stringify(this.request);
 
+  
   throw this.response;
   // return this.response.body.toHTTPResponse()
   
