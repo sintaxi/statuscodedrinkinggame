@@ -28,8 +28,7 @@ var statusCodes = [
   [500, "Arrrrrrrrrrrrrr drink."]
 ];
 
-
-GET("/",function(){
+var foo = function() {
   
   
   for (var n = 0; n < statusCodes.length;n++) {
@@ -38,9 +37,14 @@ GET("/",function(){
     }
   }
   
+
   this.response.code = resp[0];
-  this.response.body = "\n\n {code:" + resp[0] + ", rule:" + resp[1] + "}\n\n";
+  this.response.body = "\n\n {code:" + resp[0] + ", rule:'" + resp[1] + "'}\n\n";
 
   throw this.response;
+  // return this.response.body.toHTTPResponse()
   
-});
+}
+
+GET("/",foo);
+HEAD("/",foo);
