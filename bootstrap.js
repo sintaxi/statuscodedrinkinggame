@@ -39,43 +39,8 @@ GET("/",function(){
   }
   
   this.response.code = resp[0];
-  this.response.body = resp[1];
+  this.response.body = resp[1] + "\n";
 
   throw this.response;
-  // return this.response;
-  // return [resp[0], [], resp[1] + "\n"];
   
 });
-
-// function main(){
-//   
-//   // prob[code]
-//   
-//   var statusCodes = [
-//     [101, "change direction. everyone drinks!"],
-//     [200, "everyone drinks!"],
-//     [201, "create a rule. then drink"],
-//     [300, "choose several people to drink"],
-//     [301, "choose someone to drink with. its then their turn"],
-//     [305, "someone else feeds you a drink"],
-//     [307, "choose someone to drink"],
-//     [401, "everyone but you drinks"],
-//     [406, "drink twice"],
-//     [410, "remove a rule (if one has been created)"],
-//     [411, "take a long drink"],
-//     [413, "thats what she said! everyone drinks"],
-//     [417, "last person to put their hand over thir eye drinks"],
-//     [418, "sing I'm a little teapot then drink if people liked it"],
-//     [500, "Arrrrrrrrrrrrrr drink."]
-//   ];
-// 
-//   var resp;
-//   for (var n = 0; n < statusCodes.length;n++) {
-//     if (statusCodes[n][0] == prob[code]) {
-//         resp = statusCodes[n];
-//     }
-//   }
-//   
-//   return [resp[0], [], resp[1] + "\n"];
-// }
-
