@@ -1,9 +1,9 @@
 var Stack = {
   phases: {
-    early:  new Array(),
-    normal: new Array(),
-    late:   new Array(),
-    error:  new Array()
+    early:  [],
+    normal: [],
+    late:   [],
+    error:  []
   },
   request:  {},
   makeerr: function( anError ) {
@@ -11,12 +11,11 @@ var Stack = {
   }
 };
 
-Stack.Event   = function() {};
+Stack.Event = function() {};
 Stack.Halt = function() {};
 Stack.Halt.prototype = new Stack.Event();
 Stack.Pass = function() {};
 Stack.Pass.prototype = new Stack.Event();
-
 Stack.Response = function() {
   this.code = 200;
   this.body = "";
@@ -24,21 +23,22 @@ Stack.Response = function() {
   this.headers = {};
   this.encoding = 'utf-8';
   this.toHTTPResponse = function() {
-    var arr_headers = new Array();
+    var arr_headers = [];
     if ( this.mime ) {
       this.headers["Content-Type"] = this.mime;
-      if ( this.encoding ) 
+      if ( this.encoding ) {
         this.headers["Content-Type"] += '; charset=' + this.encoding;
+      }
     }
     for ( var header in this.headers ) {
       if ( this.headers[header] instanceof Array ) {
-	Array.push.apply( arr_headers, this.headers[header].map( function(a) {
-	  return [header, a];
-	}).reduce( function(a, b) {
-	  return a.concat(b);
-	}));
+        Array.push.apply( arr_headers, this.headers[header].map( function(a) {
+          return [header, a];
+        }).reduce( function(a, b) {
+          return a.concat(b);
+        }));
       } else {
-	arr_headers.push( header, this.headers[header] );
+        arr_headers.push( header, this.headers[header] );
       }
     }
     return [this.code, arr_headers, this.body];
@@ -77,58 +77,42 @@ Stack.runHandle = function( hndl ) {
 };
 
 function main( aRequest ) {
-    Stack.request = aRequest;
-    try {
-        for each ( var phase in ['early','normal','late'] ) {
-            for each( handle in Stack.phases[phase] ) {
-                try {
-                    Stack.runHandle( handle );
-                } catch(e) {
-                    if ( e instanceof Stack.Event ) {
-                        if ( e instanceof Stack.Response ) {
-                            throw e;
-                        } else if ( e instanceof Stack.Pass ) {
-                            /* ignore, but keep running */
-                        }
-                    } else {
-                        throw e;
-                    }
-                }
+  Stack.request = aRequest;
+  try {
+    ['early','normal','late'].forEach(function(phase) {
+      Stack.phases[phase].forEach(function(handle) {
+        try {
+          Stack.runHandle( handle );
+        } catch(e) {
+
+          // Make sure we catch simple "error" exceptions
+          // FIXME - make sure perl binding errors report correct line numbers
+          if( typeof e === "string" ){
+            throw new Error(e);
+          }
+
+          if ( e instanceof Stack.Event ) {
+            if ( e instanceof Stack.Response ) {
+              throw e;
+            } else if ( e instanceof Stack.Pass ) {
+              /* ignore, but keep running */
             }
+          } else {
+            throw e;
+          }
         }
-    } catch(e) {
-        if ( e instanceof Stack.Response )
-        return e.toHTTPResponse();
-        var t = e.message + " at " + e.fileName + " line " + e.lineNumber;
-        return Stack.makeerr( t );
+      });
+    });
+  } catch(e) {
+    if ( e instanceof Stack.Response ) {
+      return e.toHTTPResponse();
     }
-    
-    // Let Clayburn handle 404's
-    try {
-       throw new UserException("NotFound", "File not found");    
-    } catch(e) {
-
-    
-        var dict = [];
-        var args = [];
-        dict['params'] = [];
-        dict['params']['controller'] = "exception";
-        dict['params']['action'] = e.name
-        args.push(dict);
-        
-        var expController = new ControllerMixin(args,this);  
-        expController.extend(ExceptionControllerMixin);
-    
-
-        if (typeof(ExceptionController) == 'object' ) {
-            expController.extend(ExceptionController);
-        }
-    
-        if (typeof(expController[e.name]) == 'function') {
-            expController[e.name](e);
-        }
-
-        var x = expController.getResponse();
-        return x.body;
-    }   
+    var t = e.message + " at " + e.fileName + " line " + e.lineNumber;
+    return Stack.makeerr( t );
+  }
+  var r = new Stack.Response();
+  r.body = "Not found";
+  r.code = 404;
+  return r.toHTTPResponse();
 }
+
