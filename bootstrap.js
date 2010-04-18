@@ -22,6 +22,6 @@ function main(){
   var num = Math.floor(Math.random() * statusCodes.length);
   var resp = statusCodes[num]
   
-  return [  resp[0], ["Task", resp[1]], "To play the game, view your header\n"];
+  return [  resp[0], ["Drinking-Instructions", resp[1]], "To play the game, view your header\n"];
 }
 
