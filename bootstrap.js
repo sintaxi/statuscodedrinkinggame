@@ -39,7 +39,7 @@ GET("/",function(){
   }
   
   this.response.code = resp[0];
-  this.response.body = resp[1] + "\n\n {code:" + resp[0] + ", rule:" + resp[1] + "}\n";
+  this.response.body = "\n\n {code:" + resp[0] + ", rule:" + resp[1] + "}\n\n";
 
   throw this.response;
   
