@@ -5,12 +5,10 @@ function random(minVal,maxVal,floatVal) {
   return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
 }
 
-var prob = [ 101,200,201,300,301,305,307,401,406,410, 411];
+var prob = [ 101,200,201,300,301,305,307,401,406,410, 411,413,417,418,500];
 var code = random(0,prob.length -1);
 
 function main(){
-  
-  prob[code]
   
   var statusCodes = [
     [101, "change direction. everyone drinks!"],
@@ -37,6 +35,6 @@ function main(){
     }
   }
   
-  return [resp[0], [], resp[1] + "\n"];
+  return [resp[0], ["Task", resp[1]], "To play the game, view your header"];
 }
 
