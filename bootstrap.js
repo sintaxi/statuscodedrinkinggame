@@ -1,6 +1,18 @@
+
+
+function random(minVal,maxVal,floatVal) {
+  var randVal = minVal+(Math.random()*(maxVal-minVal));
+  return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
+}
+
+var prob = [ 101,200,201,300,301,305,307,401,406,410, 411];
+var code = random(0,prob.length -1);
+
 function main(){
   
-  var status_codes = [
+  prob[code]
+  
+  var statusCodes = [
     [101, "change direction. everyone drinks!"],
     [200, "everyone drinks!"],
     [201, "create a rule. then drink"],
@@ -13,8 +25,17 @@ function main(){
     [410, "remove a rule (if one has been created)"],
     [411, "take a long drink"],
     [413, "thats what she said! everyone drinks"],
-    [417, "last person to put their hand over thir eye drinks"]
+    [417, "last person to put their hand over thir eye drinks"],
+    [500, "Arrrrrrrrrrrrrr drink."]
   ];
 
-  return [201, [], "hello there"];
+  var resp;
+  for (var n = 0; n < statusCodes.length;n++) {
+    if (statusCodes[n][0] == prob[code]) {
+        resp = statusCodes[n];
+    }
+  }
+  
+  return [resp[0], [], resp[1]];
 }
+
