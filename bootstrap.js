@@ -36,6 +36,6 @@ function main(){
     }
   }
   
-  return [resp[0], [], resp[1]];
+  return [resp[0], [], resp[1] + "\n"];
 }
 
