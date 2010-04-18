@@ -5,7 +5,8 @@ function main(){
   var statusCodes = [
     [200, "everyone drinks!"],
     [201, "create a rule. then drink"],
-    [300, "choose several people to drink"],
+    [202, "you will drink, after the next persons turn"],
+    [300, "choose multiple people to drink"],
     [301, "choose someone to drink with. its then their turn"],
     [305, "someone else feeds you a drink"],
     [307, "choose someone to drink"],
@@ -16,7 +17,7 @@ function main(){
     [413, "thats what she said! everyone drinks"],
     [417, "last person to put their hand over thir eye drinks"],
     [418, "sing \"I'm a little teapot\" then drink"],
-    [500, "Oh fuck, drink."]
+    [500, "oh fuck, drink."]
   ]
   
   // no comment nessisary
