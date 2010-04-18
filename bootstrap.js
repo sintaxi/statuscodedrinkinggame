@@ -2,7 +2,6 @@
 function main(){
   
   var statusCodes = [
-    [101, "change direction. everyone drinks!"],
     [200, "everyone drinks!"],
     [201, "create a rule. then drink"],
     [300, "choose several people to drink"],
@@ -19,9 +18,9 @@ function main(){
     [500, "Arrrrrrrrrrrrrr drink."]
   ];
 
-  var num = Math.floor(Math.random() * statusCodes.length);
-  var resp = statusCodes[num]
+  var num = Math.floor(Math.random() * (statusCodes.length -1));
+  var rsp = statusCodes[num]
   
-  return [  resp[0], ["Drinking-Instructions", resp[1]], "To play the game, view your header\n"];
+  return [  rsp[0], ["Drinking-Instructions", rsp[1]], "To play the game, view your header\n"];
 }
 
