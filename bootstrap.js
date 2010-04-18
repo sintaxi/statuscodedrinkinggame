@@ -11,7 +11,7 @@ function main(){
     [307, "choose someone to drink"],
     [401, "everyone but you drinks"],
     [406, "drink twice"],
-    [410, "remove a rule (if one has been created)"],
+    [410, "remove a drinking rule (if one has been created)"],
     [411, "take a long drink"],
     [413, "thats what she said! everyone drinks"],
     [417, "last person to put their hand over thir eye drinks"],
