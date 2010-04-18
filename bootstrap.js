@@ -1,6 +1,7 @@
 
 function main(){
   
+  // rules to the game
   var statusCodes = [
     [200, "everyone drinks!"],
     [201, "create a rule. then drink"],
@@ -14,13 +15,16 @@ function main(){
     [411, "take a long drink"],
     [413, "thats what she said! everyone drinks"],
     [417, "last person to put their hand over thir eye drinks"],
-    [418, "sing I'm a little teapot then drink if people liked it"],
-    [500, "Arrrrrrrrrrrrrr drink."]
-  ];
-
-  var num = Math.floor(Math.random() * (statusCodes.length -1));
-  var rsp = statusCodes[num]
+    [418, "sing \"I'm a little teapot\" then drink"],
+    [500, "Oh fuck, drink."]
+  ]
   
-  return [  rsp[0], ["Drinking-Instructions", rsp[1]], "To play the game, view your header\n"];
+  // no comment nessisary
+  var rand = Math.floor(Math.random() * (statusCodes.length -1))
+  
+  // response
+  var code = statusCodes[rand][0]
+  var head = ["X-Drinking-Instructions", statusCodes[rand][1]]
+  var body = "To play the game, view your header\n"
+  return [code, head, body];
 }
-
