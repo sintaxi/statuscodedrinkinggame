@@ -1,13 +1,4 @@
 
-
-function random(minVal,maxVal,floatVal) {
-  var randVal = minVal+(Math.random()*(maxVal-minVal));
-  return typeof floatVal=='undefined'?Math.round(randVal):randVal.toFixed(floatVal);
-}
-
-var prob = [ 101,200,201,300,301,305,307,401,406,410, 411,413,417,418,500];
-var code = random(0,prob.length -1);
-
 function main(){
   
   var statusCodes = [
@@ -28,13 +19,9 @@ function main(){
     [500, "Arrrrrrrrrrrrrr drink."]
   ];
 
-  var resp;
-  for (var n = 0; n < statusCodes.length;n++) {
-    if (statusCodes[n][0] == prob[code]) {
-        resp = statusCodes[n];
-    }
-  }
+  var num = Math.floor(Math.random() * statusCodes.length);
+  var resp = statusCodes[num]
   
-  return [resp[0], ["Task", resp[1]], "To play the game, view your header"];
+  return [  resp[0], ["Task", resp[1]], "To play the game, view your header\n"];
 }
 
