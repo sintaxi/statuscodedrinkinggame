@@ -25,6 +25,6 @@ function main(){
   // response
   var code = statusCodes[rand][0]
   var head = ["X-Drinking-Instructions", statusCodes[rand][1]]
-  var body = "To play the game, view your header\n"
+  var body = "To play the game, view your header (hint: curl http://statuscodedrinkinggame.com -I)\n"
   return [code, head, body];
 }

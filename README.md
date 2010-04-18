@@ -1,3 +1,3 @@
 ### How to play
 
-    curl -I --url http://statuscodedrinkinggame.com
+    curl http://statuscodedrinkinggame.com -I
