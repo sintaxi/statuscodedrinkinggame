@@ -38,10 +38,10 @@ GET("/",function(){
     }
   }
   
-  var r = new Response();
-  r.code = resp[0];
-  r.body = resp[1];
-  return r;
+  this.response.code = resp[0];
+  this.response.body = resp[1];
+
+  return this.response;
   // return [resp[0], [], resp[1] + "\n"];
   
 });
