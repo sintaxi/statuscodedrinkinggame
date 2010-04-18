@@ -26,6 +26,7 @@ function main(){
     [411, "take a long drink"],
     [413, "thats what she said! everyone drinks"],
     [417, "last person to put their hand over thir eye drinks"],
+    [418, "sing I'm a little teapot then drink if people liked it"],
     [500, "Arrrrrrrrrrrrrr drink."]
   ];
 
