@@ -1,5 +1,7 @@
 
 function main(){
+  // cause errors. dont use them...
+  // 407
   
   // rules to the game
   var statusCodes = [
@@ -14,12 +16,11 @@ function main(){
     [403, "Forbidden",                      "Miss a turn, Must drink double on next turn."],
     [404, "Not Found",                      "Last person to make a greeting must drink."],
     [406, "Not Acceptable",                 "Must drink twice, loser."],
-    [407, "Proxy Authentication Required",  "Ask person on left, how must to drink."],
     [408, "Request Timeout",                "Last person to look at their watch, drinks."],
     [409, "Conflict",                       "Drink, then go again."],
     [410, "Gone",                           "Remove a drinking rule (if one has been created)."],
     [411, "Length Required",                "Take a looooong drink."],
-    [411, "Precondition Failed",            "You may add a precondition to drinking."],
+    [412, "Precondition Failed",            "You may add a precondition to drinking."],
     [413, "Requested Range Not Satisfiable","Person on your left and right drink with you."],
     [416, "Request Entity Too Large",       "Thats what she said! Everyone drinks."],
     [417, "Expectation Failed",             "Drink before your turn? if not, drink and go again."],
@@ -28,7 +29,7 @@ function main(){
   ]
   
   // no comment nessisary
-  var rand = Math.floor(Math.random() * (statusCodes.length -1))
+  var rand = Math.floor(Math.random() * (statusCodes.length))
   
   // response
   var code = statusCodes[rand][0]
