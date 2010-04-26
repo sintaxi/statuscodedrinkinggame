@@ -3,21 +3,28 @@ function main(){
   
   // rules to the game
   var statusCodes = [
-    [200, "everyone drinks!"],
-    [201, "create a drinking rule. then drink"],
-    [202, "you will drink, after the next persons turn"],
-    [300, "choose multiple people to drink"],
-    [301, "choose someone to drink with. its then their turn"],
-    [305, "someone else feeds you a drink"],
-    [307, "choose someone to drink"],
-    [401, "everyone but you drinks"],
-    [406, "drink twice"],
-    [410, "remove a drinking rule (if one has been created)"],
-    [411, "take a long drink"],
-    [413, "thats what she said! everyone drinks"],
-    [417, "last person to put their hand over thir eye drinks"],
-    [418, "sing \"I'm a little teapot\" then drink"],
-    [500, "oh fuck, drink"]
+    [200, "OK",                             "Calm the fuck down. no one drinks."],
+    [201, "Created",                        "Create a drinking rule. then drink."],
+    [202, "Accepted",                       "You will drink, after the next persons turn."],
+    [300, "Multiple Choices",               "Choose multiple people to drink."],
+    [301, "Moved Permanently",              "Choose someone to drink with. its then their turn."],
+    [305, "Use Proxy",                      "Person to your right feeds you a drink."],
+    [307, "Temporary Redirect",             "Choose someone to drink."],
+    [401, "Unauthorized",                   "Everyone but you drinks."],
+    [403, "Forbidden",                      "Miss a turn, Must drink double on next turn."],
+    [404, "Not Found",                      "Last person to make a greeting must drink."],
+    [406, "Not Acceptable",                 "Must drink twice, loser."],
+    [407, "Proxy Authentication Required",  "Ask person on left, how must to drink."],
+    [408, "Request Timeout",                "Last person to look at their watch, drinks."],
+    [409, "Conflict",                       "Drink, then go again."],
+    [410, "Gone",                           "Remove a drinking rule (if one has been created)."],
+    [411, "Length Required",                "Take a looooong drink."],
+    [411, "Precondition Failed",            "You may add a precondition to drinking."],
+    [413, "Requested Range Not Satisfiable","Person on your left and right drink with you."],
+    [416, "Request Entity Too Large",       "Thats what she said! Everyone drinks."],
+    [417, "Expectation Failed",             "Drink before your turn? if not, drink and go again."],
+    [418, "I'm a Teapot",                   "Sing \"I'm a little teapot\". Drink"],
+    [500, "Internal Server Error",          "Oh fuck, Everone drinks!"]
   ]
   
   // no comment nessisary
@@ -25,9 +32,15 @@ function main(){
   
   // response
   var code = statusCodes[rand][0]
-  var head = ["X-Drinking-Instructions", statusCodes[rand][1]]
-  var body = "To play the game, view your header (hint: curl http://statuscodedrinkinggame.com -I)\n"
+  var head = ["X-Drinking-Instructions", statusCodes[rand][2]]
+  var body = ""
+  body += "<html><head><title>Status Code Drinking Game</title><style>"
+  body += "body{ background:#000;margin:0;padding:5px;}"
+  body += "pre{font-size:1em;margin:0;padding:0em .2em;color:#FFF;font-family:Monaco}"
+  body += "</style></head><body><pre>"
+  body += statusCodes[rand][0] + " " + statusCodes[rand][1] + "\n" + statusCodes[rand][2]
+  body += "</pre></body></html>"
   
-  // drink
+  // drink!
   return [code, head, body];
 }
